@@ -16,9 +16,14 @@ export default function CourseForm({ courseAdded }) {
     const submitCourse = async (e) => {
         e.preventDefault();
         try {
-            await fetch('/.netlify/functions/courses', {
+            await fetch(
+                "https://course-worker.httpsworkers-airtable-form-bg9pagesdev.workers.dev/", {
                 method: 'POST',
                 body: JSON.stringify({ name, link, tags }),
+                headers: {
+                    Authorization: `Bearer keyI8AYaeJARJyrhZ`,
+                    'Content-type': `application/json`
+                  }
             });
             resetForm();
             courseAdded();
