@@ -1,0 +1,6 @@
+name = "course-worker"
+main = "src/index.js"
+account_id = "cb66508557465a58138cda4ee0318e3b"
+compatibility_date = "2023-01-19"
+node_compat = true
+
