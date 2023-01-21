@@ -8,7 +8,7 @@ export const createCourse = async (body) => {
       method: "POST",
       body: JSON.stringify(body),
       headers: {
-        Authorization: `Bearer ${AIRTABLE_API_KEY}`,
+        Authorization: `Bearer keyI8AYaeJARJyrhZ`,
         "Content-type": `application/json`,
       },
     }
