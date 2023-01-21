@@ -13,17 +13,20 @@ export default function CourseForm({ courseAdded }) {
         setCount(count + 1);
     };
 
+    const corsHeaders = {
+        "Access-Control-Allow-Headers": "*",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,HEAD,POST,OPTIONS",
+      };
+
     const submitCourse = async (e) => {
         e.preventDefault();
         try {
             await fetch(
-                "https://course-worker.httpsworkers-airtable-form-bg9pagesdev.workers.dev/", {
+                "https://course-worker.httpsworkers-airtable-form-bg9pagesdev.workers.dev", {
                 method: 'POST',
                 body: JSON.stringify({ name, link, tags }),
-                headers: {
-                    Authorization: `Bearer keyI8AYaeJARJyrhZ`,
-                    'Content-type': `application/json`
-                  }
+                mode:'no-cors',
             });
             resetForm();
             courseAdded();
