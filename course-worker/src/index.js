@@ -16,7 +16,7 @@ const corsHeaders = {
 
 import { formattedReturn } from "./helpers/formattedReturn";
 import { getCourses } from "./helpers/getCourses";
-// const createCourse = require('./helpers/createCourse');
+import {createCourse} from "./helpers/createCourse"; 
 // const deleteCourse = require('./helpers/deleteCourse');
 // const updateCourse = require('./helpers/updateCourse');
 
