@@ -1,17 +1,16 @@
-import { table } from './airtable';
-import {formattedReturn} from './formattedReturn';
+import { table } from "./airtable";
+import { formattedReturn } from "./formattedReturn";
 
-
-export const createCourse = async (event) => {
-    
-}
-// export const createCourse = async (event) => {
-//     const fields = JSON.parse(event.body);
-//     try {
-//         const createdCourse = await table.create([{ fields }]);
-//         return formattedReturn(200, createdCourse);
-//     } catch (err) {
-//         console.error(err);
-//         return formattedReturn(500, {});
-//     }
-// };
+export const createCourse = async (body) => {
+  return fetch(
+    'https://api.airtable.com/v0/appa7EGL6KN6MxYGj/Course_table',
+    {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers: {
+        Authorization: `Bearer ${AIRTABLE_API_KEY}`,
+        "Content-type": `application/json`,
+      },
+    }
+  );
+};
