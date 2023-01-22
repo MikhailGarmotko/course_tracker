@@ -3,9 +3,10 @@ import React from 'react'
 const Course = ({ course, refreshCourses }) => {
     const markCoursePurchased = async () => {
         try {
-            await fetch('/.netlify/functions/courses', {
+            await fetch('https://course-worker.httpsworkers-airtable-form-bg9pagesdev.workers.dev', {
                 method: 'PUT',
                 body: JSON.stringify({ ...course, purchased: true }),
+                // mode:'no-cors',
             });
             refreshCourses();
         } catch (err) {
@@ -18,6 +19,7 @@ const Course = ({ course, refreshCourses }) => {
             await fetch("https://course-worker.httpsworkers-airtable-form-bg9pagesdev.workers.dev/", {
                 method: 'DELETE',
                 body: JSON.stringify({ id: course.id }),
+                // mode:"no-cors",
             });
             refreshCourses();
         } catch (err) {

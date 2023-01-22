@@ -13,11 +13,6 @@ export default function CourseForm({ courseAdded }) {
         setCount(count + 1);
     };
 
-    const corsHeaders = {
-        "Access-Control-Allow-Headers": "*",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,HEAD,POST,OPTIONS",
-      };
 
     const submitCourse = async (e) => {
         e.preventDefault();

@@ -1,7 +1,7 @@
 import { table } from './airtable';
 import {formattedReturn} from './formattedReturn';
 
-export const deletedCourse = async (event) => {
+export const deleteCourse = async (event) => {
     // const { id } = JSON.parse(event.body);
     // try {
     //     const deletedCourse = await table.destroy(id);
@@ -10,4 +10,5 @@ export const deletedCourse = async (event) => {
     //     console.error(err);
     //     return formattedReturn(500, {});
     // }
+    return new Response(body);
 };

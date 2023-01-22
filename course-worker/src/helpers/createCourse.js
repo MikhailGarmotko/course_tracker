@@ -13,5 +13,5 @@ export const createCourse = async (body) => {
     });
 
 
-  return new Response(body + "Hello");
+  return new Response(body);
 };
