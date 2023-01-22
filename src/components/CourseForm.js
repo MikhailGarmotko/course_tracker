@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import Tags from './Tags';
+import Airtable from 'airtable';
 
 export default function CourseForm({ courseAdded }) {
     const [name, setName] = useState('');
     const [link, setLink] = useState('');
     const [tags, setTags] = useState([]);
     const [count, setCount] = useState(0);
+    const base = new Airtable({apiKey:'keyI8AYaeJARJyrhZ'}).base('appa7EGL6KN6MxYGj');
 
     const resetForm = () => {
         setName('');
@@ -17,8 +19,22 @@ export default function CourseForm({ courseAdded }) {
     const submitCourse = async (e) => {
         e.preventDefault();
         const body = { name, link, tags};
+        console.log(JSON.stringify({fields:body}))
+        // try {
+        //     const createdCourse = await base("Course_table").create(
+        //       [
+        //         {fields:body}
+        //       ]
+        //     );
+        //     if (createdCourse) {console.log(createdCourse[0].fields); 
+        //     resetForm();
+        //     courseAdded();}
+        //   } catch (error) {
+        //     console.log(error)
+        //   }
         try {
             await fetch(
+                
                 "https://course-worker.httpsworkers-airtable-form-bg9pagesdev.workers.dev", {
                 method: "POST",
                 body: JSON.stringify({fields:body}),
@@ -32,7 +48,6 @@ export default function CourseForm({ courseAdded }) {
         } catch (err) {
             console.error(err);
         }
-        console.log(name, link, tags);
     };
     
     return (

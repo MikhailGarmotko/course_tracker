@@ -7,9 +7,9 @@
 
 import Airtable from 'airtable';
 
-Airtable.configure({
-    endpointUrl: 'https://api.airtable.com',
-    apiKey: 'keyI8AYaeJARJyrhZ'
-});
-export const table = Airtable.base('appa7EGL6KN6MxYGj');
+// Airtable.configure({
+//     endpointUrl: 'https://api.airtable.com',
+//     apiKey: 'keyI8AYaeJARJyrhZ'
+// });
+export const base = new Airtable({apiKey:'keyI8AYaeJARJyrhZ'}).base('appa7EGL6KN6MxYGj');
 

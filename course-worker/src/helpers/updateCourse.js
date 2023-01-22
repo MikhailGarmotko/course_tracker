@@ -1,4 +1,4 @@
-import { table } from './airtable';
+import { base } from './airtable';
 import {formattedReturn} from './formattedReturn';
 
 export const updateCourse = async (event) => {

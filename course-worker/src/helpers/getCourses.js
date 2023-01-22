@@ -1,10 +1,10 @@
-import { table } from "./airtable";
+import { base } from "./airtable";
 import { formattedReturn } from "./formattedReturn";
 
-import Airtable from "airtable";
-const base = new Airtable({ apiKey: "keyI8AYaeJARJyrhZ" }).base(
-  "appa7EGL6KN6MxYGj"
-);
+// import Airtable from "airtable";
+// const base = new Airtable({ apiKey: "keyI8AYaeJARJyrhZ" }).base(
+//   "appa7EGL6KN6MxYGj"
+// );
 
 export const getCourses = () => {
   return fetch("https://api.airtable.com/v0/appa7EGL6KN6MxYGj/Course_table", {

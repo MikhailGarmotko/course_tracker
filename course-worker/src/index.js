@@ -5,6 +5,7 @@ import { deleteCourse } from "./helpers/deleteCourse";
 import { updateCourse } from "./helpers/updateCourse";
 
 addEventListener("fetch", (event) => {
+  console.log(`Received new request: ${event.request}`);
   return event.respondWith(handleRequest(event.request));
 });
 
@@ -60,9 +61,9 @@ const handleRequest = async (request) => {
   //     "GET, POST, PUT, DELETE, OPTIONS"
   //   );
   // }
-
+  
   if (request.method === "OPTIONS") {
-    
+    console.log(request.method);
     return new Response("OK", { headers: corsHeaders });
   }
   if (request.method === "GET") {
