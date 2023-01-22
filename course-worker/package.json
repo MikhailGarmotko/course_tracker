@@ -8,5 +8,9 @@
   "scripts": {
     "start": "wrangler dev",
     "deploy": "wrangler publish"
+  },
+  "proxy": "https://course-worker.httpsworkers-airtable-form-bg9pagesdev.workers.dev",
+  "dependencies": {
+    "cloudflare-workers-cors": "^0.0.1"
   }
 }

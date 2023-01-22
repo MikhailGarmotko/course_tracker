@@ -8,7 +8,7 @@ export const updateCourse = async (event) => {
       method: "PUT",
       body: {id, ...fields},
       headers: {
-        Authorization: `Bearer keyI8AYaeJARJyrhZ`,
+        "Authorization": `Bearer keyI8AYaeJARJyrhZ`,
         "Content-type": `application/json`,
       },
     });

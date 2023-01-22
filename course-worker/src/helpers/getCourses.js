@@ -10,7 +10,7 @@ export const getCourses = () => {
   return fetch("https://api.airtable.com/v0/appa7EGL6KN6MxYGj/Course_table", {
     method: "GET",
     headers: {
-      Authorization: `Bearer keyI8AYaeJARJyrhZ`,
+      "Authorization": `Bearer keyI8AYaeJARJyrhZ`,
       "Content-type": `application/json`,
     },
   });
