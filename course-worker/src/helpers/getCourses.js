@@ -7,15 +7,14 @@ const base = new Airtable({ apiKey: "keyI8AYaeJARJyrhZ" }).base(
 );
 
 export const getCourses = () => {
-
-return fetch('https://api.airtable.com/v0/appa7EGL6KN6MxYGj/Course_table', {
-    method: 'GET',
+  return fetch("https://api.airtable.com/v0/appa7EGL6KN6MxYGj/Course_table", {
+    method: "GET",
     headers: {
       Authorization: `Bearer keyI8AYaeJARJyrhZ`,
-      'Content-type': `application/json`
-    }
-  })
-}
+      "Content-type": `application/json`,
+    },
+  });
+};
 
 // export const getCourses = (event) => {
 //   base("Course table")

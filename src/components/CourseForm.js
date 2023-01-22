@@ -21,12 +21,17 @@ export default function CourseForm({ courseAdded }) {
 
     const submitCourse = async (e) => {
         e.preventDefault();
+        const body = { name, link, tags};
         try {
             await fetch(
                 "https://course-worker.httpsworkers-airtable-form-bg9pagesdev.workers.dev", {
                 method: 'POST',
-                body: JSON.stringify({ name, link, tags }),
+                body: JSON.stringify(body),
                 mode:'no-cors',
+                headers: {
+                    // Authorization: `Bearer keyI8AYaeJARJyrhZ`,
+                    "Content-type": `application/json`,
+                  },
             });
             resetForm();
             courseAdded();

@@ -26,9 +26,9 @@ const handleRequest = async (request) => {
   }
   if (request.method === "GET") {
     // return new Response ("Hello world")
-    return getCourses(request.method);
+    return getCourses();
   } else if (request.method === "POST") {
-    return await createCourse(request.method);
+    return await createCourse(request);
   }
   // } else if (event.httpMethod === 'PUT') {
   //     return await updateCourse(event);

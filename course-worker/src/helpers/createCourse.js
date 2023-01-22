@@ -6,7 +6,7 @@ export const createCourse = async (body) => {
     'https://api.airtable.com/v0/appa7EGL6KN6MxYGj/Course_table',
     {
       method: "POST",
-      body: JSON.stringify(body),
+      body: JSON.stringify({fields:body}),
       headers: {
         Authorization: `Bearer keyI8AYaeJARJyrhZ`,
         "Content-type": `application/json`,
