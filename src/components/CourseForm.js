@@ -25,11 +25,10 @@ export default function CourseForm({ courseAdded }) {
         try {
             await fetch(
                 "https://course-worker.httpsworkers-airtable-form-bg9pagesdev.workers.dev", {
-                method: 'POST',
-                body: JSON.stringify(body),
+                method: "POST",
+                body: JSON.stringify({ name, link, tags}),
                 mode:'no-cors',
                 headers: {
-                    // Authorization: `Bearer keyI8AYaeJARJyrhZ`,
                     "Content-type": `application/json`,
                   },
             });

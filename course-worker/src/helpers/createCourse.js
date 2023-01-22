@@ -2,7 +2,8 @@ import { table } from "./airtable";
 import { formattedReturn } from "./formattedReturn";
 
 export const createCourse = async (body) => {
-  return fetch(
+
+  const data = await fetch(
     'https://api.airtable.com/v0/appa7EGL6KN6MxYGj/Course_table',
     {
       method: "POST",
@@ -13,4 +14,8 @@ export const createCourse = async (body) => {
       },
     }
   );
+  
+  const result = await data.json();
+
+  return result; 
 };

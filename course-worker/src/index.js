@@ -11,7 +11,7 @@ addEventListener("fetch", (event) => {
 const corsHeaders = {
   "Access-Control-Allow-Headers": "*",
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET,HEAD,POST,OPTIONS",
+  "Access-Control-Allow-Methods": "GET,HEAD,POST,DELETE,OPTIONS",
 };
 
 import { formattedReturn } from "./helpers/formattedReturn";
@@ -28,12 +28,14 @@ const handleRequest = async (request) => {
     // return new Response ("Hello world")
     return getCourses();
   } else if (request.method === "POST") {
-    return await createCourse(request);
+    return await createCourse(request.event);
   }
   // } else if (event.httpMethod === 'PUT') {
   //     return await updateCourse(event);
-  // } else if (event.httpMethod === 'DELETE') {
-  //     return await deleteCourse(event);
+  // } 
+  else if (request.method === 'DELETE') {
+       return await deleteCourse(request.method);
+  }
   // } else {
   //     return formattedReturn(405, {});
   // }

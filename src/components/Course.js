@@ -15,7 +15,7 @@ const Course = ({ course, refreshCourses }) => {
 
     const deleteCourse = async () => {
         try {
-            await fetch('/.netlify/functions/courses', {
+            await fetch("https://course-worker.httpsworkers-airtable-form-bg9pagesdev.workers.dev/", {
                 method: 'DELETE',
                 body: JSON.stringify({ id: course.id }),
             });
