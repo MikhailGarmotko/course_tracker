@@ -26,7 +26,7 @@ export default function CourseForm({ courseAdded }) {
             await fetch(
                 "https://course-worker.httpsworkers-airtable-form-bg9pagesdev.workers.dev", {
                 method: "POST",
-                body: JSON.stringify({ name, link, tags}),
+                body: JSON.stringify({fields:body}),
                 mode:'no-cors',
                 headers: {
                     "Content-type": `application/json`,
@@ -37,14 +37,14 @@ export default function CourseForm({ courseAdded }) {
         } catch (err) {
             console.error(err);
         }
-        console.log(name, link);
+        console.log(name, link, tags);
     };
     
     return (
         <div className="card">
             <div className="card-header">Add a New Course</div>
             <div className="card-body">
-                <form className="" onSubmit={submitCourse}>
+                <form className="" method ='POST' onSubmit={submitCourse}>
                     <div className="form-group">
                         <label htmlFor="name">Name</label>
                         <input
