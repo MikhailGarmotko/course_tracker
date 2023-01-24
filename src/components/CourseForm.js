@@ -19,28 +19,17 @@ export default function CourseForm({ courseAdded }) {
     const submitCourse = async (e) => {
         e.preventDefault();
         const body = { name, link, tags};
-        console.log(JSON.stringify({fields:body}))
-        // try {
-        //     const createdCourse = await base("Course_table").create(
-        //       [
-        //         {fields:body}
-        //       ]
-        //     );
-        //     if (createdCourse) {console.log(createdCourse[0].fields); 
-        //     resetForm();
-        //     courseAdded();}
-        //   } catch (error) {
-        //     console.log(error)
-        //   }
+        
         try {
             await fetch(
                 
                 "https://course-worker.httpsworkers-airtable-form-bg9pagesdev.workers.dev", {
                 method: "POST",
-                body: JSON.stringify({fields:body}),
-                mode:'no-cors',
+                body: JSON.stringify(
+                {fields:body}
+                ),
                 headers: {
-                    "Content-type": `application/json`,
+                    "Content-Type": "application/json",
                   },
             });
             resetForm();

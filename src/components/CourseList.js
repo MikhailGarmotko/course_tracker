@@ -3,7 +3,7 @@ import Course from './Course';
 
 const CourseList = ({ courses, refreshCourses }) => {
     
-
+// debugger;
     
     return (
         <div>
@@ -11,13 +11,13 @@ const CourseList = ({ courses, refreshCourses }) => {
             <div className="list-group">
                 {courses
                     .filter((course) => !course.fields.purchased)
-                    .map((course) => <Course course={course.fields} key={course.id} refreshCourses={refreshCourses} />
-                )}
+                    .map((course) => <Course course={course} key={course.id} refreshCourses={refreshCourses} />
+                )} 
             </div>
             <h2 className="mt-5 mb-3">Already Purchased</h2>
             {courses
                 .filter((course) => course.fields.purchased)
-                .map((course) => <Course course={course.fields} key={course.id} refreshCourses={refreshCourses} />
+                .map((course) => <Course course={course} key={course.id} refreshCourses={refreshCourses} />
             )}
         </div>
     )

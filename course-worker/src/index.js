@@ -4,79 +4,54 @@ import { createCourse } from "./helpers/createCourse";
 import { deleteCourse } from "./helpers/deleteCourse";
 import { updateCourse } from "./helpers/updateCourse";
 
-addEventListener("fetch", (event) => {
-  console.log(`Received new request: ${event.request}`);
-  return event.respondWith(handleRequest(event.request));
-});
+addEventListener('fetch', event => {
+  event.respondWith(handleRequest(event.request)
+    // For ease of debugging, we return exception stack
+    // traces in response bodies. You are advised to
+    // remove this .catch() in production.
+    .catch(e => new Response(e.stack, {
+      status: 500,
+      statusText: "Internal Server Error"
+    }))
+  )
+})
 
-const corsHeaders = {
-  "Access-Control-Allow-Headers": "*",
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "POST, DELETE, GET, OPTIONS",
-};
-
-function handleOptions(request) {
-  // Make sure the necessary headers are present
-  // for this to be a valid pre-flight request
-  let headers = request.headers;
-  if (
-    headers.get("Origin") !== null &&
-    headers.get("Access-Control-Request-Method") !== null &&
-    headers.get("Access-Control-Request-Headers") !== null
-  ) {
-    // Handle CORS pre-flight request.
-    // If you want to check or reject the requested method + headers
-    // you can do that here.
-    let respHeaders = {
-      ...corsHeaders,
-      // Allow all future content Request headers to go back to browser
-      // such as Authorization (Bearer) or X-Client-Name-Version
-      "Access-Control-Allow-Headers": request.headers.get(
-        "Access-Control-Request-Headers"
-      ),
-    };
-    return new Response(null, {
-      headers: respHeaders,
-    });
-  } else {
-    // Handle standard OPTIONS request.
-    // If you want to allow other HTTP Methods, you can do that here.
-    return new Response(null, {
-      headers: {
-        Allow: "GET, HEAD, POST, OPTIONS",
-      },
-    });
-  }
-}
 
 const handleRequest = async (request) => {
-  // if (request.method === "OPTIONS") {
-  //   response = handleOptions(request);
-  // } else {
-  //   response = await fetch(request);
-  //   response = new Response(response.body, response);
-  //   response.headers.set("Access-Control-Allow-Origin", "*");
-  //   response.headers.set(
-  //     "Access-Control-Allow-Methods",
-  //     "GET, POST, PUT, DELETE, OPTIONS"
-  //   );
-  // }
-  
   if (request.method === "OPTIONS") {
-    console.log(request.method);
-    return new Response("OK", { headers: corsHeaders });
-  }
-  if (request.method === "GET") {
-    // return new Response ("Hello world")
-    return await getCourses();
-  } else if (request.method === "POST") {
-    return await createCourse(request.body);
-  } else if (request.method === "PUT") {
-    return await updateCourse(request.body);
-  } else if (request.method === "DELETE") {
-    return await deleteCourse(request.body);
-  }
-  // } else {
-  //     return formattedReturn(405, {});
+    return handleOptions(request);
+   
+  } 
+  //else if (request.method === "GET" || request.method == "HEAD") {
+  //   // Pass-through to origin.
+  //   return await getCourses();
   // }
-};
+  if (request.method === "GET") {return await getCourses(request.body)}
+  if (request.method === "POST") {return await createCourse(request.body)}
+  if (request.method === "DELETE") {return await deleteCourse(request.body)}
+  if (request.method === "PUT") {return await updateCourse(request.body)}
+}
+  
+  const corsHeaders = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, HEAD, POST, DELETE, PUT, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+  }
+  
+  function handleOptions(request) {
+    if (request.headers.get("Origin") !== null &&
+      request.headers.get("Access-Control-Request-Method") !== null &&
+      request.headers.get("Access-Control-Request-Headers") !== null) {
+      // Handle CORS pre-flight request.
+      return new Response(null, {
+        headers: corsHeaders
+      })
+    } else {
+      // Handle standard OPTIONS request.
+      return new Response(null, {
+        headers: {
+          "Allow": "GET, HEAD, POST, DELETE, PUT, OPTIONS",
+        }
+      })
+    }
+  }
